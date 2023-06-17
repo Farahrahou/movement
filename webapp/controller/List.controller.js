@@ -190,7 +190,12 @@ sap.ui.define([
                 this._showDetail(oEvent.getParameter("listItem") || oEvent.getSource());
             }
         },
-
+        onAddMovement: function() {
+            var bReplace = !Device.system.phone;
+            this.getRouter().navTo("object", {
+                objectId : 'new'
+            }, bReplace);
+        },
         /**
          * Event handler for the bypassed event, which is fired when no routing pattern matched.
          * If there was an object selected in the list, that selection is removed.
