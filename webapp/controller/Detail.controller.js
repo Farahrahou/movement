@@ -66,7 +66,7 @@ sap.ui.define([
                     sap.m.MessageBox.error(error.responseText);
                 }
             })
-        },   
+        },
         onDelete: function () {
             this.getModel("detailView").setProperty("/busy", true);
             this.getModel().remove(this.getView().getBindingContext().getPath(), {
@@ -147,7 +147,10 @@ sap.ui.define([
             oViewModel.setProperty("/busy", false);
 
             this.getView().bindElement({
-                path: sObjectPath,
+                 path: sObjectPath,
+                  parameters: {
+                  expand: 'TOMOV_ITEM',
+                 },
                 events: {
                     change: this._onBindingChange.bind(this),
                     dataRequested : function () {

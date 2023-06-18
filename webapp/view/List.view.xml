@@ -2,7 +2,9 @@
     controllerName="be.ap.sap.movapp.controller.List"
     xmlns="sap.m"
     xmlns:semantic="sap.f.semantic"
-    xmlns:mvc="sap.ui.core.mvc">
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+
 
     <semantic:SemanticPage
         id="listPage"
@@ -58,7 +60,7 @@
                             press=".onOpenViewSettings"
                             icon="sap-icon://sort"
                             type="Transparent"/>
-                        <Button press="onAddMovement" icon="sap-icon://add" type="Transparent" />
+                    <Button press="onAddMovement" icon="sap-icon://add" type="Transparent" />
                     </OverflowToolbar>
                 </headerToolbar>
                 <items>

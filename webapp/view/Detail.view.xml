@@ -3,7 +3,11 @@
     xmlns="sap.m"
     xmlns:semantic="sap.f.semantic"
     xmlns:f="sap.ui.layout.form"
-    xmlns:mvc="sap.ui.core.mvc">
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+
+
+
 
     <semantic:SemanticPage
         id="detailPage"
@@ -11,7 +15,7 @@
         busyIndicatorDelay="{detailView>/delay}"
         showFooter="true">
         <semantic:titleHeading>
-            <Title
+             <Title 
                 text="{MovId}"
                 level="H2"/>
         </semantic:titleHeading>
@@ -44,7 +48,9 @@
                     press=".toggleFullScreen"/>
         </semantic:exitFullScreenAction>
            <semantic:content>
-            <f:SimpleForm>
+    
+              <VBox>
+            <f:SimpleForm id="_IDGenSimpleForm1">
                 <f:content>
                     <Label text="MovId" visible="{detailView>/new}" />
                     <Input value="{MovId}" visible="{detailView>/new}"/>
@@ -53,9 +59,9 @@
                     <Label text="Type" />
                     <Input value="{Type}" />
                     <Label text="MovDate" />
-                    <DatePicker value="{ path: 'MovDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
+                    <DatePicker value="{path: 'MovDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
                     <Label text="ChgDate" />
-                    <DatePicker value="{ path: 'ChgDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
+                    <DatePicker value="{path: 'ChgDate', type: 'sap.ui.model.type.Date' }" displayFormat="dd.MM.yyyy" />
                     <Label text="ChgUser" />
                     <Input value="{ChgUser}" />
                     <Label text="Partner" />
@@ -66,12 +72,38 @@
                     <CheckBox selected="{Finished}" />
                 </f:content>
             </f:SimpleForm>
+             <Table inset="false" visible="{!${detailView>/new} }" items="{ path: 'ToMov_Item' }">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="Item" level="H2"/>
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="ItemID" />
+                        </Column>
+                        <Column hAlign="End">
+                            <Text text="Matnr" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem vAlign="Middle">
+                            <cells>
+                                <ObjectIdentifier title="{ItemId}" />
+                                <ObjectNumber number="{Matnr}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table> 
+            </VBox>
 
         </semantic:content>
 
         <semantic:footerCustomActions>
 			<Button text="Save" press="onSave" />
-               <Button text="Delete" press="onDelete" visible="{= !${detailView>/new} }"/>
+            <Button text="Delete" press="onDelete" visible="{!${detailView>/new} }"/>
 			<Button text="Cancel" press="onCancel" visible="{detailView>/new}"/>
         </semantic:footerCustomActions>
 
