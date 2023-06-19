@@ -110,7 +110,7 @@ sap.ui.define([
                 const bindingContext = model.createEntry('/MovementSet', {
                     properties: {
                         MovId: '',
-                        Type: '',
+                        MovType: '',
                         MovDate: '',
                         ChgDate: '',
                         ChgUser: '',
@@ -143,14 +143,14 @@ sap.ui.define([
             // Set busy indicator during view binding
             var oViewModel = this.getModel("detailView");
 
-            // If the view was not bound yet its not busy, only if the binding requests data it is set to busy again
+            // If the view was not bound yet its not busy,      only if the binding requests data it is set to busy again
             oViewModel.setProperty("/busy", false);
 
             this.getView().bindElement({
-                 path: sObjectPath,
-                  parameters: {
-                  expand: 'TOMOV_ITEM',
-                 },
+                  path: sObjectPath,
+                    parameters: {
+                   expand: 'ToMov_Item',
+                  },
                 events: {
                     change: this._onBindingChange.bind(this),
                     dataRequested : function () {
